@@ -23,10 +23,10 @@ app.post('/items', async (req, res, next) => {
 		const img = req.files.img;
 		const pathA = __dirname + '/files/' + audio.name;
 		const pathI = __dirname + '/files/' + img.name;
-		audio.mv(pathA, err => {
+		await audio.mv(pathA, err => {
 			if (err) throw err;
 		});
-		img.mv(pathI, err => {
+		await img.mv(pathI, err => {
 			if (err) throw err;
 		});
 
