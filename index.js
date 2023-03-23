@@ -30,7 +30,6 @@ app.post('/items', async (req, res, next) => {
 		});
 
 		const duration = await getAudioDurationInSeconds(pathA);
-		var len = duration;
 		var images = [pathI];
 		var videoOptions = {
 			fps: 25,
@@ -59,7 +58,7 @@ app.post('/items', async (req, res, next) => {
 				});
 			});
 	} catch (error) {
-		res.status(510).json({ success: false, err });
+		res.status(510).json({ success: false, error });
 	}
 });
 
