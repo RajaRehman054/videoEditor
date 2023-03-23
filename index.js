@@ -4,9 +4,10 @@ var cors = require('cors');
 var app = express();
 var videoshow = require('videoshow');
 var { getAudioDurationInSeconds } = require('get-audio-duration');
-
+var fs = require('fs');
 var fileUpload = require('express-fileupload');
 require('dotenv').config();
+
 app.listen(process.env.PORT || 5000, () => {
 	console.log('Running on port 4000.');
 });
@@ -29,7 +30,9 @@ app.post('/items', async (req, res, next) => {
 			if (err) throw err;
 		});
 
-		const duration = await getAudioDurationInSeconds(pathA);
+		const stream = fs.createReadStream(pathA);
+		const duration = await getAudioDurationInSeconds(stream);
+
 		var images = [pathI];
 		var videoOptions = {
 			fps: 25,
@@ -51,14 +54,14 @@ app.post('/items', async (req, res, next) => {
 			.on('start', function (command) {})
 			.on('error', function (err, stdout, stderr) {})
 			.on('end', function (output) {
-				res.sendFile(__dirname + '/video.mp4', function (err) {
-					if (err) {
-						throw err;
+				res.sendFile(__dirname + '/video.mp4', function (error) {
+					if (error) {
+						res.status(500).json({ success: false, error });
 					}
 				});
 			});
 	} catch (error) {
-		res.status(510).json({ success: false, error });
+		res.status(500).json({ success: false, error });
 	}
 });
 
