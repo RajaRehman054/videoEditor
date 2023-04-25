@@ -8,7 +8,7 @@ var fs = require('fs');
 var fileUpload = require('express-fileupload');
 require('dotenv').config();
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 4000, () => {
 	console.log('Running on port 4000.');
 });
 
@@ -30,8 +30,7 @@ app.post('/items', async (req, res, next) => {
 			if (err) throw err;
 		});
 
-		const stream = fs.createReadStream(pathA);
-		const duration = await getAudioDurationInSeconds(stream);
+		const duration = await getAudioDurationInSeconds(pathA);
 
 		var images = [pathI];
 		var videoOptions = {

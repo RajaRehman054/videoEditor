@@ -12,6 +12,7 @@
     "dotenv": "^16.0.3",
     "express": "~4.16.1",
     "express-fileupload": "^1.4.0",
+    "get-audio-duration": "^3.1.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.5.1",
@@ -23,6 +24,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
-    "path-to-regexp": "^6.1.0"
+    "path-to-regexp": "^6.1.0",
+    "videoshow": "^0.1.12"
   }
 }
